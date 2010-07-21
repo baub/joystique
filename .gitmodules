@@ -1,0 +1,3 @@
+[submodule "iphone_app/Vendor/zimt"]
+	path = iphone_app/Vendor/zimt
+	url = http://github.com/esad/zimt.git
