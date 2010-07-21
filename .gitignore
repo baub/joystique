@@ -1,0 +1,5 @@
+.DS_Store
+*.tmproj
+typescript
+.bundle
+iphone_app/build
