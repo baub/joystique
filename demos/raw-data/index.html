@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Raw Data - Joystique</title>
+    <script src="../../js/joystique-0.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+      jQuery(function ($) {
+        var joystique = new Joystique('ws://localhost:10000');
+        
+        joystique.on('motion', function (motion) {
+          $('#object').text(JSON.stringify(motion));
+          
+          $('#matrix').html(motion.attitude.matrix.toString().replace(/([^,]+,){4}/g, "$&<br />"))
+          
+          $('#pitch').text(motion.attitude.angles.pitch);
+          $('#yaw').text(motion.attitude.angles.yaw);
+          $('#roll').text(motion.attitude.angles.roll);
+          
+          $('#ua_x').text(motion.userAcceleration.x);
+          $('#ua_y').text(motion.userAcceleration.y);
+          $('#ua_z').text(motion.userAcceleration.z);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Raw Data - Joystique</h1>
+    <ul>
+      <li>
+        <h2>Raw JSON</h2>
+        <span id="object"></span>
+      </li>
+      <li>
+        <h2>4x4 Matrix of Attitude/Orientation</h2>
+        <span id="matrix"></span>
+      </li>
+      <li>
+        <h2>Euler Angles of Attitude/Orientation</h2>
+        <ul>
+          <li>
+            <strong>Pitch</strong>
+            <span id="pitch"></span>
+          </li>
+          <li>
+            <strong>Yaw</strong>
+            <span id="yaw"></span>
+          </li>
+          <li>
+            <strong>Roll</strong>
+            <span id="roll"></span>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h2>User Acceleration</h2>
+        <ul>
+          <li>
+            <strong>x</strong>
+            <span id="ua_x">-</span>
+          </li>
+          <li>
+            <strong>y</strong>
+            <span id="ua_y">-</span>
+          </li>
+          <li>
+            <strong>z</strong>
+            <span id="ua_z">-</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>
