@@ -34,13 +34,11 @@
 
 			deviceMotionHandler = ^ (CMDeviceMotion *deviceMotion, NSError *error) {
 				CMAttitude* a = deviceMotion.attitude;
-				
 				CMRotationMatrix m = a.rotationMatrix;
-				
 				CMAcceleration ua = deviceMotion.userAcceleration;
 								
 				if (webSocket.connected) {
-					[webSocket send: [NSString stringWithFormat:@"{ \"type\" : \"attitude\", \"matrix\" : \"matrix3d(%f, %f, %f, 0, %f, %f, %f, 0, %f, %f, %f, 0, 0, 0, 0, 1)\", \"userAcceleration\": { \"x\": \"%f\", \"y\": \"%f\", \"z\": \"%f\" }, \"rotation\": { \"pitch\": \"%f\", \"yaw\": \"%f\", \"roll\": \"%f\" } }", m.m11, m.m21, m.m31, m.m12, m.m22, m.m32, m.m13, m.m23, m.m33, ua.x, ua.y, ua.z, a.pitch, a.yaw, a.roll]];
+					[webSocket send: [NSString stringWithFormat:@"{ \"attitude\": { \"matrix\": [%f, %f, %f, 0, %f, %f, %f, 0, %f, %f, %f, 0, 0, 0, 0, 1], \"angles\": { \"pitch\": \"%f\", \"yaw\": \"%f\", \"roll\": \"%f\" } }, \"userAcceleration\": { \"x\": \"%f\", \"y\": \"%f\", \"z\": \"%f\" } }", m.m11, m.m21, m.m31, m.m12, m.m22, m.m32, m.m13, m.m23, m.m33, a.pitch, a.yaw, a.roll, ua.x, ua.y, ua.z]];
 				}
 			};
 			
