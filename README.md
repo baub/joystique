@@ -10,7 +10,7 @@ It consists of three parts:
 
 Actually there’s a fourth part.
 
-- **demos**: That’s where the fun is! Demos use the js library to do all kinds of visualizations stuff
+- **demos**: That’s where the fun is! Demos use the js library to do all kinds of visualizations
 
 Quick Start
 -----------
@@ -27,7 +27,7 @@ Running the server
 The server needs the following to be installed:
 
 - node.js >= 0.1.100
-- websocket 1.0.0
+- node-websocket-server >= 1.3.02
 
 Once everything is installed start the server:
 
@@ -46,9 +46,8 @@ Possible features
 
 - Submit app to AppStore so not only certified devs can deploy it to their iPhone 4
 - Bonjour: Replace address text field with service discovery dropdown
-- Sensors
- - Try approximating the local position by tracking userAcceleration rotated by attitude
- - Geographic position & heading via Core Location
+- Try approximating the local position by tracking userAcceleration rotated by attitude
+- Geographic position & heading via Core Location
 
 Authors
 -------
