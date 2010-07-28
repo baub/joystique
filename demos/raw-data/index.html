@@ -6,7 +6,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script>
       jQuery(function ($) {
-        var joystique = new Joystique('ws://localhost:10000');
+        var joystique = new Joystique('ws://atom.9elements.com:10000');
         
         joystique.on('motion', function (motion) {
           $('#object').text(JSON.stringify(motion));

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dancing Vader - Joystique</title>
+    <script src="../../js/joystique-0.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+      jQuery(function ($) {
+        var joystique = new Joystique('ws://atom.9elements.com:10000');
+        
+        joystique.on('motion', function (motion) {
+          var matrixTransform = 'matrix3d(' + motion.attitude.matrix.join(',') + ')';
+          
+          $('#vader').css('-webkit-transform', matrixTransform);
+          
+          console.log(matrixTransform);
+        });
+      });
+    </script>
+    <style type="text/css">
+      body {
+        background: #000;
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="vader" src="http://electexiles.files.wordpress.com/2009/05/darth-vader1.jpg" alt="Darth Vader" title="Darth Vader" />
+  </body>
+</html>
