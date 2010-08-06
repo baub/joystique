@@ -1,22 +1,10 @@
-sys:  require 'sys'
-http: require 'http'
-ws:   require 'websocket-server'
+http = require 'http'
+io   = require 'socket.io'
 
-httpServer: http.createServer()
-server: ws.createServer({ debug: false }, httpServer)
-
-clients: []
-
-server.on 'listening', -> console.log 'Listening for connections'
-
-server.on 'connection', (connection) ->
-  console.log "New connection $connection.id"
-  clients.push connection
+server = http.createServer()
   
-  connection.on 'message', (message) ->
-    for client in clients
-      client.write message
+server.on 'clientMessage', (client, message) ->
+  this.broadcast message, client
 
-server.on 'close', (connection) -> console.log "Connection closed $connection.id"
-
+io.listen server
 server.listen 10000
